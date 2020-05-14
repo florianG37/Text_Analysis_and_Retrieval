@@ -25,10 +25,14 @@ p = p.str.replace(r'^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$', 'phone-number')
 #trigram
 
 #bigram
-p = p.str.replace(r'It gt|gon na|call later|let know|sorry call|r u|u r|good morning|take care', 'ham-bigram')
-p = p.str.replace(r'please call|po box|guaranteed call|call landline|selected receive|contact u|send stop|every week|await collective', 'spam-bigram')
 
+ham_bigram=['lt gt','gon na', 'call later', 'let know', 'sorry call', 'r u','u r', 'good morning','take care','u wan', 'wan na','lt decimal','decimal gt','new year', 'u get','pls send','ok lor','gt lt','u still','good night']
+for w in ham_bigram:
+    p[p.str.contains(w)]= p[p.str.contains(w)] + " Bigram--HAM"
 
+spam_bigram=['please call','po box', 'guaranteed call', 'prize guaranteed', 'call landline', 'selected receive','contact u', 'send stop','every week','await collection', 'call claim','urgent mobile','call land','land line', 'customer service','chance win','free entry','claim call','private account','account, statement']
+for w in spam_bigram:
+    p[p.str.contains(w)]= p[p.str.contains(w)] + " spamBigram"
 
 #Train Data
 tab_SMS_train = p[0:4800]
