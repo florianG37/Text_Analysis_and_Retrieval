@@ -15,7 +15,7 @@ tab_SMS = dataSet["SMS"]
 tab_label = dataSet["label"]
 
 ## Pre_process the Data
-p = tab_SMS.str.replace(r'£|\$', 'money-symb')
+p = tab_SMS.str.replace(r'£|\$', 'money-symbol')
 p = p.str.replace(r'^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$', 'phone-number')
 
 ##Feature Engineering
