@@ -20,8 +20,6 @@ p = p.str.replace(r'^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$', 'phone-number')
 
 ##Feature Engineering
 
-#lenght message
-
 #trigram
 
 #bigram
