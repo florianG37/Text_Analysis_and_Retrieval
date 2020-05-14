@@ -20,6 +20,14 @@ p = p.str.replace(r'^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$', 'phone-number')
 
 ##Feature Engineering
 
+#lenght message
+
+#trigram
+
+#bigram
+p = p.str.replace(r'It gt|gon na|call later|let know|sorry call|r u|u r|good morning|take care', 'ham-bigram')
+p = p.str.replace(r'please call|po box|guaranteed call|call landline|selected receive|contact u|send stop|every week|await collective', 'spam-bigram')
+
 
 
 #Train Data
