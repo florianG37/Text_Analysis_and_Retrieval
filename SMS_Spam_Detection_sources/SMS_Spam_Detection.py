@@ -15,13 +15,13 @@ dataSet.columns = ["label", "SMS"]
 tab_SMS = dataSet["SMS"]
 tab_label = dataSet["label"]
 
+##Feature Engineering
+
 ## Pre_process the Data
 p = tab_SMS.str.replace(r'£|\$', 'money-symbol')
 p = p.str.replace(r'^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$', 'phone-number')
 
-##Feature Engineering
-
-#trigram
+##Analysis of the lexical field
 
 #bigram
 
