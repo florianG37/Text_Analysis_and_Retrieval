@@ -4,6 +4,12 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn import svm
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
 
+
+pandas.set_option('display.max_rows', None)
+pandas.set_option('display.max_columns', None)
+pandas.set_option('display.width', None)
+pandas.set_option('display.max_colwidth', -1)
+
 ## Loading Data
 
 dataSet = pandas.read_csv("SMSSpamCollection.txt", sep="	", header=None)
@@ -33,6 +39,7 @@ spam_bigram=['please call','po box', 'guaranteed call', 'prize guaranteed', 'cal
 for w in spam_bigram:
     p[p.str.contains(w)]= p[p.str.contains(w)] + " spamBigram"
 
+
 #Train Data
 tab_SMS_train = p[0:4800]
 tab_label_train = tab_label[0:4800]
@@ -47,7 +54,7 @@ cv = CountVectorizer()
 features = cv.fit_transform(tab_SMS_train)
 
 #Build the model
-model = MultinomialNB();
+model = MultinomialNB()
 model.fit(features, tab_label_train)
 
 
@@ -55,9 +62,15 @@ model.fit(features, tab_label_train)
 test = cv.transform(tab_SMS_test)
 predictions = model.predict(test)
 
-
 print("Accuracy of the model is ", accuracy_score(tab_label_test, predictions))
 print("Precision score of the model is ", precision_score(tab_label_test, predictions, average='macro'))
 print("Recall score of the model is ", recall_score(tab_label_test, predictions, average='macro'))
 print("F1 score of the model is ", f1_score(tab_label_test, predictions, average='macro'))
 
+df = pandas.DataFrame(
+    confusion_matrix(tab_label_test, predictions),
+    index=[['actual', 'actual'], ['ham', 'spam']],
+    columns=[['predicted', 'predicted'], ['ham', 'spam']]
+)
+
+print(df)
