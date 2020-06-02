@@ -32,18 +32,18 @@ spam_words = getWords('spam')
 ham_words = getWords('ham')
 
 
-# 20 most frequent spam words
+# 10 most frequent spam words
 Counter = collections.Counter(spam_words)
-most_occur_spam_words = Counter.most_common(20)
+most_occur_spam_words = Counter.most_common(10)
 dataset_most_occur_spam_words = pandas.DataFrame(most_occur_spam_words, columns=['word','frequency'])
 dataset_most_occur_spam_words.plot(x='word', y='frequency', kind='bar', figsize=(15, 7), color = 'red')
 
 
 
-# 20 most frequent ham words
+# 10 most frequent ham words
 Counter = collections.Counter(ham_words)
-most_occur_ham_words = Counter.most_common(20)
-dataset_most_occur_ham_words = pandas.DataFrame(most_occur_spam_words, columns=['word','frequency'])
+most_occur_ham_words = Counter.most_common(10)
+dataset_most_occur_ham_words = pandas.DataFrame(most_occur_ham_words, columns=['word','frequency'])
 dataset_most_occur_ham_words.plot(x='word', y='frequency', kind='bar', figsize=(15, 7), color = 'blue')
 
 plt.show()
